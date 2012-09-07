@@ -1,0 +1,14 @@
+.card{
+	width:2em;
+	height:5em;
+	border-radius:15px;
+	padding:10px;
+	margin:13px 10px;
+	display:inline;
+	
+	font-size: 45px;
+	font-family: sans-serif;
+	color: #fff;
+	
+	border: grey solid 2px; 
+}

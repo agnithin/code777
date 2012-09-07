@@ -1,0 +1,35 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/** @fileOverview &lt;tt>Dialog&lt;/tt>.
+<span class='line'>  2</span> 
+<span class='line'>  3</span>     @author &lt;a href='mailto:nxa1884@g.rit.edu'> Nithin Anand Gangadharan &lt;/a>
+<span class='line'>  4</span>     @version 1.0
+<span class='line'>  5</span> */</span><span class="WHIT">
+<span class='line'>  6</span> 
+<span class='line'>  7</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">Dialog</span><span class="PUNC">(</span><span class="NAME">_aQuestion</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="WHIT">	</span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">'#dialog_alert_head'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">html</span><span class="PUNC">(</span><span class="NAME">_aQuestion.player.playerName</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">" &lt;i>answered&lt;/i>"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="WHIT">	</span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">'#dialog_alert_message'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">html</span><span class="PUNC">(</span><span class="STRN">"\""</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">_aQuestion.question.questionText</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"\" &lt;i>As&lt;/i> \""</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">_aQuestion.answer</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"\""</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">	</span><span class="COMM">//$.mobile.changePage($('#dialog_alert'), 'pop', false, true);</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="WHIT">	</span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">'#link_dialog_alert'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">click</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="WHIT">	</span><span class="COMM">//alert using Simple Dialog plugin; facing problems in smallscreen</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">	</span><span class="COMM">/*var msg = _aQuestion.player.playerName + " &lt;i>answered&lt;/i> \"" + _aQuestion.question.questionText + "\" &lt;i>with&lt;/i> \"" + _aQuestion.answer + "\"";
+<span class='line'> 15</span> 	$("#next_button").simpledialog({
+<span class='line'> 16</span> 	    'mode' : 'bool',
+<span class='line'> 17</span> 	    'prompt' : msg,
+<span class='line'> 18</span> 	    'useModal': true,
+<span class='line'> 19</span> 	    'buttons' : {
+<span class='line'> 20</span> 	      'OK': {
+<span class='line'> 21</span> 	        click: function () {
+<span class='line'> 22</span> 	         // $('#dialogoutput').text('OK');
+<span class='line'> 23</span> 	        }
+<span class='line'> 24</span> 	      }
+<span class='line'> 25</span> 	    }
+<span class='line'> 26</span> 	  });*/</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 28</span> </span></pre></body></html>

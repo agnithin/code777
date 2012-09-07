@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<!-- 
+Created By Nithin Anand Gangadharan <nxa1884@g.rit.edu>
+Main game page for Code 777
+This uses jQuery Mobile to split the HTML into multiple pages
+The following are the pages:
+Game Page: the main game page with the board
+Answers Page: contains the questions answered by other players
+Rough page: Page where the player can cross out the unlikely cards and highlight the possible cards
+Notes pages: a page where the player can write notes regatding the game
+Guess page: a page where the player can guess his cards
+ -->
+<html>
+<head>
+	<title>Code 777</title>
+	<script type="text/javascript" charset="utf-8" src="js/phonegap-1.2.0.js"></script>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"> 
+	
+	<!-- jQuery library -->
+	<script type="text/javascript" src="js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.mobile.js"></script>
+	<link rel="stylesheet" href="css/jquery.mobile.css" />
+	
+	<!-- jQuery Mobile - Simple Dialog Plugin  - http://dev.jtsage.com/jQM-SimpleDialog/ -->
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.simpledialog.min.css" /> 
+	<script type="text/javascript" src="js/jquery/jquery.mobile.simpledialog.min.js"></script>
+	
+	<!-- Models -->
+	<script type="text/javascript" src="js/model/data.js"></script>
+	<script type="text/javascript" src="js/model/player.js"></script>
+	<script type="text/javascript" src="js/model/card.js"></script>
+	<script type="text/javascript" src="js/model/deck.js"></script>
+	<script type="text/javascript" src="js/model/question.js"></script>
+	<script type="text/javascript" src="js/model/aquestion.js"></script>	
+	<script type="text/javascript" src="js/model/game.js"></script>
+	
+	<!-- Views -->
+	<script type="text/javascript" src="js/view/gameview.js"></script>
+	<script type="text/javascript" src="js/view/deckview.js"></script>
+	<script type="text/javascript" src="js/view/dialog.js"></script>
+	<script type="text/javascript" src="js/view/answerview.js"></script>
+	
+	<!-- Controller -->
+	<script type="text/javascript" src="js/controller/main.js"></script>
+	
+	<!--  ajax calls for multi-player game |  not yet implemented -->
+	<script type="text/javascript" src="js/ajax.js"></script>
+	
+	<!-- Game Stylesheets -->
+	<link rel="stylesheet" href="css/card.css" />
+	<link rel="stylesheet" href="css/main.css" />		
+</head>
+<body>
+	<!-- Start of first page: #game -->
+	<div data-role="page" id="game">
+		<div data-role="header" data-theme="b">
+			<!-- <a href="index.html" data-role="button" data-inline="true">Quit Game</a> -->
+			<a href="#answers" data-role="button" data-inline="true" data-direction="reverse">Answers</a>
+			<h1>Code 777</h1>			
+			<a href="#rough" data-role="button" data-inline="true">Rough</a>
+		</div>
+		<div data-role="content" id="one">	
+			<div id="card_table"></div>
+		</div>		
+		<div data-role="controlgroup" data-type="horizontal" class="center">
+			<a href="#make_guess" data-role="button" data-inline="true">Guess Cards</a>
+			<a href="#" data-role="button" data-inline="true" onclick="nextMove();" id="next_button">Next Move</a>
+		</div>
+		<br />
+		<div data-role="footer" data-theme="b">
+			<a href="index.html" data-role="button" data-inline="true"  rel="external">Quit Game</a>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+	
+	
+	<!-- Start of answers page: #answers -->
+	<div data-role="page" id="answers">
+		<div data-role="header" data-theme="b">
+			<a href="#game" data-role="button" data-inline="true" data-icon="back">Back</a>
+			<h1>Answers</h1>
+		</div>
+		<div data-role="content" id="one">	
+			<p id="answers_list"></p>
+		</div>
+		<div data-role="footer" data-theme="b">
+			<h4>Code 777</h4>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+	
+	
+	<!-- Start of rough page: #rough -->
+	<div data-role="page" id="rough">
+		<div data-role="header" data-theme="b">
+			<a href="#game" data-role="button" data-inline="true" data-icon="back" data-direction="reverse">Back</a>
+			<h1>Rough</h1>
+			<a href="#notes" data-role="button" data-inline="true">Notes</a>
+		</div>
+		<div data-role="content" id="one">	
+			<p>Click on a card to select</p>
+			<p id="rough_guess"></p>
+		</div>
+		<div data-role="footer" data-theme="b">
+			<h4>Code 777</h4>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+	
+	
+	<!-- Start of notes page: #notes -->
+	<div data-role="page" id="notes">
+		<div data-role="header" data-theme="b">
+			<a href="#rough" data-role="button" data-inline="true" data-icon="back" data-direction="reverse">Back</a>
+			<h1>Notes</h1>
+		</div>
+		<div data-role="content" id="one">	
+			<textarea> </textarea>
+		</div>
+		<div data-role="footer" data-theme="b">
+			<h4>Code 777</h4>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+	
+	
+	<!-- Start of make guess page: #make_guess -->
+	<div data-role="page" id="make_guess">
+		<div data-role="header" data-theme="b">
+			<a href="#game" data-role="button" data-inline="true" data-icon="back">Back</a>
+			<h1>Guess Card</h1>
+		</div>
+		<div data-role="content" id="one">	
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup" data-type="horizontal">			
+		  			<label for="myselect1" class="select">Card 1:</label>
+					<select name="card_one_number" data-native-menu="false" id="card_one_number"></select>
+					<select data-native-menu="false" id="card_one_color"></select>
+				</fieldset>	
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<label for="myselect2" class="select">Card 2:</label>
+					<select data-native-menu="false" id="card_two_number"></select>
+					<select data-native-menu="false" id="card_two_color"></select>
+				</fieldset>	
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<label for="myselect3" class="select">Card 3:</label>
+					<select data-native-menu="false" id="card_three_number"></select>
+					<select data-native-menu="false" id="card_three_color"></select>
+				</fieldset>
+				
+				<div class="center">
+					<a href="#" id="check_guess_button" data-role="button" data-inline="true" onclick="checkGuess()">Make Guess</a>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-theme="b">
+			<h4>Code 777</h4>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+	
+	
+	<!-- Start of dialog alert page: #dialog_alert -->
+	<a id='link_dialog_alert' href="#dialog_alert" data-rel="dialog" data-transition="pop" data-inline="true"  style="display:none;"></a>
+	<div data-role="page" id="dialog_alert">
+		<div data-role="header" data-theme="b">
+			<h1>Answer</h1>
+		</div>
+		<div data-role="content" data-theme="b" >
+			<h1 id='dialog_alert_head'>head</h1>
+			<p id='dialog_alert_message'>message</p>   
+			<a id='dialog_alert_option' href="#" data-role="button" data-rel="back" data-theme="b">OK</a>    
+		</div>
+	</div>
+
+</body>
+</html>
